@@ -319,8 +319,18 @@ function showListOuter(){
     arryList.forEach((item)=>{       
         if( item.checked){
             const li = document.createElement('li');
+            const img = document.createElement('img');
+            img.src=item.img;
+            img.style.width = "25px"
+            img.style.height = "25px";            
             li.setAttribute('id','weel-li');
-            li.innerHTML = item.name;
+
+            if(!item.name){
+                li.appendChild(img)
+            }else if(item.name){
+                li.innerHTML = item.name;
+            }
+           
             outList.append(li)
         }
     })
@@ -341,7 +351,20 @@ spinbtn.addEventListener("click",function(){
     
      let intervelId = setInterval(()=>{
         if(count===1){
-            spinResult.innerText = arryList[random].name;
+            console.log('img',arryList[random].img)
+            if(arryList[random].name){
+                spinResult.innerText = arryList[random].name;
+
+            }else if(arryList[random].img){
+               
+            const img = document.createElement('img');
+            img.src=arryList[random].img;
+            img.style.width = "25px"
+            img.style.height = "25px"; 
+            spinResult.innerText='';
+            spinResult.appendChild(img)
+            }
+
             clearInterval(intervelId)
             return
         }

@@ -2,12 +2,15 @@
 
 #result-div{
     border-bottom: 2px solid rgb(206, 234, 107);
-    margin-top: 5px;
+    margin: 5px;
+    padding-bottom: 5px;
+ 
 }
 
 #result-sapn{
-    color: red;
+    color: rgb(203, 86, 32);
     font-size: 27px;
+    
 
     
 }
