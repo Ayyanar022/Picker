@@ -313,22 +313,44 @@ const outList = document.getElementById('out-ul');
 
 function showListOuter(){
     outList.innerHTML='';  
+    spinResult.innerHTML="";
 
     if(arryList.length===0) return
 
     arryList.forEach((item)=>{       
         if( item.checked){
             const li = document.createElement('li');
-            const img = document.createElement('img');
-            img.src=item.img;
-            img.style.width = "25px"
-            img.style.height = "25px";            
+                 
             li.setAttribute('id','weel-li');
 
-            if(!item.name){
+            if(!item.name && item.img){
+                const img = document.createElement('img');
+                img.src=item.img;
+                img.style.width = "25px"
+                img.style.height = "25px";  
                 li.appendChild(img)
-            }else if(item.name){
+            }else if(item.name && !item.img){
                 li.innerHTML = item.name;
+            }
+            else if(item.name && item.img){
+
+                const container = document.createElement('div');
+                const span = document.createElement('p')
+                span.style.color = "black"
+                span.innerText = item.name;
+
+                const img = document.createElement('img');
+                img.src= item.img;
+                img.style.width = "25px"
+                img.style.height = "25px"; 
+                img.style.marginLeft='7px'
+
+                container.appendChild(span)
+                container.appendChild(img)
+                spinResult.appendChild(container);
+                li.appendChild(container);
+            
+
             }
            
             outList.append(li)
@@ -351,18 +373,37 @@ spinbtn.addEventListener("click",function(){
     
      let intervelId = setInterval(()=>{
         if(count===1){
-            console.log('img',arryList[random].img)
-            if(arryList[random].name){
+
+            if(arryList[random].name && !arryList[random].img){
+                 spinResult.innerText =''
                 spinResult.innerText = arryList[random].name;
 
-            }else if(arryList[random].img){
-               
+            }else if(!arryList[random].name && arryList[random].img){
+                spinResult.innerText =''
             const img = document.createElement('img');
             img.src=arryList[random].img;
             img.style.width = "25px"
             img.style.height = "25px"; 
             spinResult.innerText='';
             spinResult.appendChild(img)
+            }
+            else if(arryList[random].name && arryList[random].img){
+                 spinResult.innerText =''
+
+                const container = document.createElement('div');
+                const span = document.createElement('span')
+                span.innerText = arryList[random].name;
+
+                const img = document.createElement('img');
+                img.src=arryList[random].img;
+                img.style.width = "25px"
+                img.style.height = "25px"; 
+                img.style.marginLeft='7px'
+                spinResult.innerText='';
+
+                container.appendChild(span)
+                container.appendChild(img)
+                spinResult.appendChild(container);
             }
 
             clearInterval(intervelId)
