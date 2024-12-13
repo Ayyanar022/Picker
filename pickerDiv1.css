@@ -1,0 +1,213 @@
+/* output */
+
+#result-div{
+    border-bottom: 2px solid rgb(206, 234, 107);
+    margin-top: 5px;
+}
+
+#result-sapn{
+    color: red;
+    font-size: 27px;
+
+    
+}
+
+#spin-btn{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border:rgb(106, 106, 106) solid 1px;
+    
+}
+
+#weel-li{
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+/* //media query */
+
+@media (max-width:768px){
+    #outer-div{
+        height: auto;
+        min-height: 100vh;
+        flex-direction:column;
+        gap:20px;
+        padding: 20px;
+        align-items: center;
+        justify-content: center;
+        overflow-y: auto;
+    }
+
+    #todo,#picker{
+        flex:none;
+        width:70%;
+        /* height: auto; */
+        min-height: 650px;
+    }
+
+    /* view/isert dialog--------- */
+    #view-dialog-outer{
+        overflow: auto;
+    }
+
+    #view-dialog-inner{
+
+        max-width: 95%;
+        height: auto;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: none;
+    }
+
+    #content-div {
+        flex-direction: column;    /* Stack #div1 and #div2 vertically */
+        height: auto;              /* Allow content to adjust height */
+    }
+
+    #content-div #div1 div,#content-div #div2 div{
+        margin: 10px 0px;
+        box-shadow: none;
+        border: rgb(148, 147, 147) solid 2px;
+    }
+
+    #content-div #div1 div {
+        min-height: 30vh; /* Set a minimum height to occupy half the viewport */
+    }
+
+    #view-dialog-inner h4{
+        margin: 10px;
+        font-size: 18px;
+    }
+
+    #view-dialog-inner p{
+        margin-bottom: 5px;       
+    }
+
+    #view-dialog-inner #btn-div {
+        margin-top: 10px;
+        gap: 15px;
+    }
+
+    #cancel, #insert {
+        max-width: 100%;        
+        font-size: 16px;        
+        padding: 8px 16px;     
+    }
+
+    /* EYE-------- */
+    
+    #todo.hidden {
+        background-color: rgb(214, 209, 209); 
+        border: 1px solid rgb(83, 82, 82);
+        color: white; 
+        flex: none;
+        margin: 0 auto;
+        height: 100vh; 
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }
+
+    /* #todo.hidden *{
+        visibility: hidden;
+    } */
+
+    #todo.hidden #uo_list, 
+    #todo.hidden #dash-small, 
+    #todo.hidden #dash, 
+    #todo.hidden #input-div, 
+    #todo.hidden #conformation-dialog, 
+    #todo.hidden #header-div {
+        display: none; /* Completely hides the elements */
+    }
+
+    #todo.hidden #hide-content {
+        visibility: visible; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        flex-direction: column;
+        text-align: center; 
+        height: 100%;
+        width: 100%;
+        /* gap: 50px; */
+    }
+
+
+    .show-button {
+        display: none !important; 
+    }
+
+#todo.hidden + #hide-content {
+    display: block; /* Show the content when #todo has the hidden class */
+}
+
+
+}
+
+
+
+@media (max-width:480px){
+    #outer-div{
+        padding: 10px;
+    }
+
+    #todo ,#picker{
+        width:95%;
+        padding: 10px;
+        box-shadow: none;
+        max-height: 450px;
+        overflow-y: auto;
+    }
+
+        /* view/isert dialog--------- */
+        #view-dialog-outer{
+         
+        }
+
+        #view-dialog-inner{
+
+            max-width: 90%;
+            height: auto;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #view-dialog-inner #btn-div {
+            /* margin-top: 5px; */
+            gap: 10px;
+        }
+
+
+        .dialog-content{
+ 
+            padding: 20px ;  
+            max-width: 90%;
+      
+        }
+        
+        .dialog-content p{
+            font-size: 17px;
+        }
+
+        #dash{
+            display: none;
+   
+        }
+        #dash-small{
+            display: block;
+            font-size: 32px;
+            text-align: center;
+            color: rgb(52, 51, 51);
+            width: 100%;
+            margin-top: 0px;
+            margin-top: -5px;
+        }
+}

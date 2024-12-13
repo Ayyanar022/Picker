@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picker</title>
+    <link href="picker.css" rel="stylesheet">
+    <link href="listIcon.css" rel="stylesheet">
+    <link href="hideANDshow.css" rel="stylesheet">
+    <link href="pickerDiv1.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+   
+ 
+</head>
+<body>
+    <div id="outer-div">
+        <!-- picker -->
+
+
+        <div id="picker">
+            <div id="weel">
+                
+
+                <div id="result-div">
+                    <button id="spin-btn"> SPIN</button>
+                    <h2 it="result-h2">Result :  <sapn id="result-sapn"></sapn></h2>
+                </div>
+
+                <div id="result">
+                    <ul id="out-ul">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- todo list -->
+
+        <div id="todo">
+
+            <div id="header-div">               
+                    <h2>INPUTS <span id="array-count">0</span></h2>          
+               
+                <section id="heder-icons">  
+                    <div class="icon hide-button" >
+                        <i class="fas fa-eye"></i> <!-- Eye Icon -->
+                        <span class="tooltip">Hide</span>
+                    </div>  
+                    <div class="icon">
+                        <i class="fas fa-random" id="suffle"></i> <!-- Shuffle Icon -->                   
+                        <span class="tooltip">Suffle</span>
+                    </div>      
+                    <div class="icon" id="view-insert-iconDiv">
+                        <i class="fas fa-list" id="list-icon"></i> <!-- List Icon -->
+                        <span class="tooltip">View/Import inputs</span>
+                    </div>
+                    <div class="icon" id="more-menu">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span class="tooltip">More</span>
+                        <!-- MENU OPTIONS -->
+                        <div class="menu" id="menu">
+                            <div class="menu-item" style="opacity: 0.5;"><span id="t">T</span> Modify Title & Disc.</div>
+                            <div class="menu-item" style="opacity: 0.5;"><span id="w">W</span>Enable Weight</div>
+                            <div class="menu-item" style="opacity: 0.5;"><span id="e"><i class="fas fa-check-square"></i></span>Enable All Inputs</div>
+                            <div class="menu-item" style="opacity: 0.5;"><span id="c"><i class="fas fa-sync-alt"></i></span>Reset Count</div>
+                            <div class="menu-item" id="remove-all"><span id="r"><i class="fas fa-brush rotate-down"></i></span> Remove All Inputs</div>
+                            <!-- <div class="menu-item">Option 4</div> -->
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div id="hide-content">
+
+                <div>
+                    <h2>INPUT SECTION</h2>
+                <p>Hidden-Can't Edit</p>
+                </div>
+                <button id='show-btn2'>CLICK TO EDIT INPUT</button>
+                <div></div>
+            </div>
+
+            <!-- Conformation dialog box -->
+             <div id="conformation-dialog" class="hide-dialog" >
+                <div class="dialog-content">
+                    <h2>Remove All Inputs?</h2>
+                    <p>All the current inputs will be removed. If you want to keep the inputs, please save it before proceed.</p>
+                <div id="dialog-btn">
+                    <button id="no-btn">cancel</button>
+                    <button id="confirm-btn">proceed</button>
+                </div>
+                   
+                </div>
+             </div>
+
+            <!-- input div -->
+
+            <div id="input-div">
+              <div id="div-1">
+                <input type="text" id="user-input" placeholder="Input text here...">
+                <button id="input-btn"> 
+                    <div class="icon1">
+                        <i class="fa fa-plus"></i>
+                        <span class="tooltip1">Add Text/Press Enter</span>
+                    </div>
+                </button>
+               
+              </div>
+
+              <div id="div-2">
+                <div class="icon1">
+                    <label for="img-file"> 
+                        <i class="fas fa-image"> </i>
+                    </label>
+                    <input type="file" accept="image/*" id="img-file" style="display: none;">
+                    
+                    <span class="tooltip1">Add Image(s)</span>
+
+                </div>
+              </div>
+            </div>
+            <div id="dash">   ----------------------------------</div>
+            <div id="dash-small">   ---------------------------</div>
+
+            <!-- list part -->
+             <ul id="uo_list">
+                
+            </ul>
+        </div>
+        <button class="show-button"><i class="fas fa-eye-slash"></i>Inputs</button>
+
+        <!-- view/import dialogbox -->
+         <div id="view-dialog-outer" class="hide-view-dialog">
+            <div id="view-dialog-inner">
+                <h4>View/Import Inputs</h4>
+                <div id="content-div">
+                    <div id="div1">
+                        <p>Existing Inputs (Non-Editable)</p>
+                        <div> 
+                            <p id="dialog-count"></p>
+                            <ul id="insert-ul">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="div2">
+                        <p>New inputs (One input/line)p>
+                        <div id="dialog-input"> 
+                            <textarea id="dialog-input-textarea" rows="10" placeholder="insert/paste your new inputs here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div id="btn-div">
+                    <button id="cancel">Cancel</button>
+                    <button id="insert">Add List</button>
+                </div>
+            </div>
+
+         </div>
+    </div>
+
+
+   
+     <script src="picker.js"></script>
+</body>
+</html>
