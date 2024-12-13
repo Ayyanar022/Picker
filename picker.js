@@ -476,6 +476,9 @@ cancel_btn.addEventListener('click',()=>{
 
 insert_btn.addEventListener('click',()=>{
     const data =dialog_textarea.value
+
+    if(!data.trim())return alert("Please Type Somthing..")
+
     const text ={name:data.trim(),checked:true,img:''};
     arryList.push(text)
     view_insert_dialog.classList.add('hide-view-dialog');
