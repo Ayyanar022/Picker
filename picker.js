@@ -532,3 +532,31 @@ function addDragAndDropFunctionality() {
 
 
 
+//----TO STORE DATA IN DATABASE --------------------------------------------------------------------
+
+const save_data = document.getElementById('store-data');
+
+save_data.addEventListener('click',async()=>{
+
+    try{
+        const response = await fetch('http://localhost:7070/api/insert',{
+            method:"POST",
+            headers:{
+               "content-type":"application/json"
+            },
+            body:JSON.stringify(arryList)
+        })
+        console.log(response)
+    
+        if(!response.ok){
+            throw new Error("Issue occure while data storing..")
+        }
+    
+        const res =await response.json()
+        alert("Data inserted successfully..")
+    }catch(error){
+        console.error("An error occurred:", error); // Log the error for debugging
+        alert("Something went wrong while processing your request. Please try again later.");
+    }  
+
+})
