@@ -153,18 +153,116 @@ function showList() {
             showListOuter();
         });
 
+        // // to foexpand input with when focus
+     
+
+        textInput.addEventListener('focus', function () {
+            div.style.visibility = "hidden";  // Hide other elements
+        
+            if (!element.img) {
+                // Create the file input element
+                const imageInput = document.createElement('input');
+                imageInput.type = 'file';  
+                imageInput.accept = 'image/*'; 
+                imageInput.setAttribute('id',"imgeInput") 
+                imageInput.style.visibility= "hidden"
+
+                const imglabel = document.createElement('label');
+                // imglabel.setAttribute("for","imgeInput")
+                imglabel.setAttribute("for", "imgeInput"); 
+
+                const imgicon = document.createElement('i');
+                imgicon.classList.add("fas","fa-image");
+
+                imglabel.appendChild(imgicon)
+                
+
+        
+                // Add event listener for when the user selects an image
+                imageInput.addEventListener('change', function (event) {
+                    const file = event.target.files[0];  
+                    if (file) {
+                        const imgUrl = URL.createObjectURL(file);  
+                        arryList[index].img = imgUrl;  
+                        showList();  
+                        showListOuter(); 
+                    }
+                });
+        
+                
+                input_div.appendChild(imglabel);
+                input_div.appendChild(imageInput);
+            }
+        });
+
+
+        
+        textInput.addEventListener('blur', function () {
+            div.style.visibility = 'visible';  
+        });
+        
+
+        textInput.addEventListener('blur',function(){
+            // textInput.style.width = "auto";
+            div.style.visibility = 'visible';
+            // input_div.style.display = "block";
+
+        })
+        //end------------------------
+
+
         const image = document.createElement('img');
         image.src = element.img;
         image.alt = "icon";
         image.style.width = "25px";
         image.style.height = "20px";
+        image.style.position = "relative"; 
 
-        input_div.appendChild(textInput);
-        if (element.img) {
-            input_div.appendChild(image);
+        // Create a container for the image and icon
+        const container = document.createElement('div');
+        container.style.position = 'relative'; 
+        container.style.display = 'inline-block';
+
+        // Add image to the container
+        container.appendChild(image);
+
+        // Image click event
+        image.addEventListener("click", function () {
+            const icon = document.createElement("i");
+            icon.classList.add("fas", "fa-trash-alt"); 
+            icon.style.position = "absolute"; 
+            icon.style.top = "0";
+            icon.style.right = "0"; 
+            icon.style.color = "black";
+            icon.style.fontSize = "24px";
+
+       icon.addEventListener("click",function(){
+        // container.remove()
+
+        const index = arryList.findIndex(item=>item.img === element.img);
+        if(index !==-1){
+            arryList[index].img = '';
+            showList()
+            showListOuter()
         }
+    })
 
-        const div = document.createElement('div');
+    // Append the icon to the container
+    container.appendChild(icon);
+});
+
+
+
+input_div.appendChild(textInput);
+
+if (element.img) {
+    input_div.appendChild(container); 
+}
+
+const div = document.createElement('div');
+
+
+        //-----------------------------------------------------------------
 
         // Grip icon
         const gripIcon = document.createElement('i');
@@ -332,7 +430,7 @@ function showListOuter(){
             }else if(item.name && !item.img){
                 li.innerHTML = item.name;
             }
-            else if(item.name && item.img){
+            else if(item.name && item.img){ 
 
                 const container = document.createElement('div');
                 const span = document.createElement('p')
