@@ -321,8 +321,8 @@ ul li div input{
 /* --------------------------------------------------- */
 /* 3d icon header list */
 #list-icon{
-    background-color: rgb(236, 225, 141);
-    color: orange;
+    background-color: rgb(248, 234, 159);
+    color: rgb(241, 192, 99);
  padding: 10px;
     border-radius: 30px;
 }
