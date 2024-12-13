@@ -553,6 +553,7 @@ save_data.addEventListener('click',async()=>{
         }
     
         const res =await response.json()
+        arryList =[]
         alert("Data inserted successfully..")
     }catch(error){
         console.error("An error occurred:", error); // Log the error for debugging
