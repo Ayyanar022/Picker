@@ -356,6 +356,7 @@ li.addEventListener('dragstart', (e) => {
 });
 
 li.addEventListener('dragover', (e) => {
+    
   e.preventDefault(); // Allow dropping
 });
 
