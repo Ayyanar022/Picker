@@ -331,6 +331,7 @@ function showListOuter(){
 const spinbtn = document.getElementById("spin-btn");
 const spinResult = document.getElementById("result-sapn");
 
+
 spinbtn.addEventListener("click",function(){
     spinResult.innerText =''
 
