@@ -29,6 +29,12 @@
 }
 
 
+.drag-over {
+    background-color: #f0f0f0; /* Highlight when dragging over */
+    /* border: 2px dashed #ccc; */
+}
+
+
 /* //media query */
 
 @media (max-width:768px){

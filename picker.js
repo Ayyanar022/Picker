@@ -44,96 +44,180 @@ function addListItem(){
 
  // SHOW LIST ITEM --------------------------------------
 
- function showList(){
-    uoList.innerHTML = '';  
+//  function showList(){
+//     uoList.innerHTML = '';  
    
 
-    arryList.forEach((element,index)=>{
-        const li = document.createElement('li');
-        li.setAttribute('id','list-li')
-        const input_div = document.createElement('div');
-        input_div.setAttribute('id',"input-div1")
+//     arryList.forEach((element,index)=>{
+//         const li = document.createElement('li');
+//         li.setAttribute('id','list-li')
+//         const input_div = document.createElement('div');
+//         input_div.setAttribute('id',"input-div1")
 
+
+//         const textInput = document.createElement('input');
+//         textInput.setAttribute('id','text-input');
+//         textInput.value = element.name; 
+//         textInput.addEventListener('input',function(event){
+//             arryList[index].name = event.target.value;
+//             showListOuter()
+//         })
+
+//         const image = document.createElement('img');
+//         image.src=element.img
+//         image.alt="icon";
+//         image.style.width = "25px";
+//         image.style.height = "20px";
+
+//         input_div.appendChild(textInput);
+//         if(element.img){
+//             input_div.appendChild(image)
+//         }
+       
+
+
+//         const div = document.createElement('div');
+
+//         // grip icon
+//         const gripIcon = document.createElement('i');
+//         gripIcon.classList.add('fas','fa-grip-vertical')
+        
+//         //copy icon 
+//         const copyIcon = document.createElement('i');
+//         copyIcon.classList.add('far','fa-copy');
+
+//         //checkbox input
+//         const chekBox = document.createElement('input');
+//         chekBox.setAttribute('type','checkbox');
+//         chekBox.setAttribute("id","list-checkbox")
+//         chekBox.checked = element.checked
+//         chekBox.addEventListener('change',function(event){
+//             arryList[index].checked = event.target.checked
+//             showListOuter();
+//         })
+
+       
+//         //remove icon
+//         const remoIcon = document.createElement('i');
+//         remoIcon.classList.add('fas' ,'fa-times');
+//         remoIcon.setAttribute('id','remov-icon');
+
+//         div.appendChild(gripIcon);
+//         div.appendChild(copyIcon);
+//         div.appendChild(chekBox);
+//         div.appendChild(remoIcon);
+
+//         li.appendChild(input_div)
+//         li.appendChild(div);
+
+//         uoList.appendChild(li);
+
+//         // finished creating list items 
+
+//         // list elemnet functionality
+
+//         copyIcon.addEventListener('click',function(){
+//             const copyitem = {...element}
+//             arryList.splice(index , 0, copyitem);
+//             addListItem();
+//         })
+
+//         remoIcon.addEventListener('click',function(){
+//             arryList.splice(index,1);
+//             addListItem();
+//         })
+
+//         // userInput.value = '';
+
+//     })
+
+//     showListOuter()
+//     console.log("list array",arryList)
+//  }
+
+function showList() {
+    uoList.innerHTML = '';  
+
+    arryList.forEach((element, index) => {
+        const li = document.createElement('li');
+        li.setAttribute('id', 'list-li');
+        li.dataset.index = index; 
+        const input_div = document.createElement('div');
+        input_div.setAttribute('id', "input-div1");
 
         const textInput = document.createElement('input');
-        textInput.setAttribute('id','text-input');
-        textInput.value = element.name; 
-        textInput.addEventListener('input',function(event){
+        textInput.setAttribute('id', 'text-input');
+        textInput.value = element.name;
+        textInput.addEventListener('input', function (event) {
             arryList[index].name = event.target.value;
-            showListOuter()
-        })
+            showListOuter();
+        });
 
         const image = document.createElement('img');
-        image.src=element.img
-        image.alt="icon";
+        image.src = element.img;
+        image.alt = "icon";
         image.style.width = "25px";
         image.style.height = "20px";
 
         input_div.appendChild(textInput);
-        if(element.img){
-            input_div.appendChild(image)
+        if (element.img) {
+            input_div.appendChild(image);
         }
-       
-
 
         const div = document.createElement('div');
 
-        // grip icon
+        // Grip icon
         const gripIcon = document.createElement('i');
-        gripIcon.classList.add('fas','fa-grip-vertical')
-        
-        //copy icon 
+        gripIcon.classList.add('fas', 'fa-grip-vertical');
+        gripIcon.style.cursor = 'move';
+
+        // Copy icon
         const copyIcon = document.createElement('i');
-        copyIcon.classList.add('far','fa-copy');
+        copyIcon.classList.add('far', 'fa-copy');
 
-        //checkbox input
+        // Checkbox input
         const chekBox = document.createElement('input');
-        chekBox.setAttribute('type','checkbox');
-        chekBox.setAttribute("id","list-checkbox")
-        chekBox.checked = element.checked
-        chekBox.addEventListener('change',function(event){
-            arryList[index].checked = event.target.checked
+        chekBox.setAttribute('type', 'checkbox');
+        chekBox.setAttribute("id", "list-checkbox");
+        chekBox.checked = element.checked;
+        chekBox.addEventListener('change', function (event) {
+            arryList[index].checked = event.target.checked;
             showListOuter();
-        })
+        });
 
-       
-        //remove icon
+        // Remove icon
         const remoIcon = document.createElement('i');
-        remoIcon.classList.add('fas' ,'fa-times');
-        remoIcon.setAttribute('id','remov-icon');
+        remoIcon.classList.add('fas', 'fa-times');
+        remoIcon.setAttribute('id', 'remov-icon');
 
         div.appendChild(gripIcon);
         div.appendChild(copyIcon);
         div.appendChild(chekBox);
         div.appendChild(remoIcon);
 
-        li.appendChild(input_div)
+        li.appendChild(input_div);
         li.appendChild(div);
 
         uoList.appendChild(li);
 
-        // finished creating list items 
-
-        // list elemnet functionality
-
-        copyIcon.addEventListener('click',function(){
-            const copyitem = {...element}
-            arryList.splice(index , 0, copyitem);
+        // Copy item
+        copyIcon.addEventListener('click', function () {
+            const copyitem = { ...element };
+            arryList.splice(index, 0, copyitem);
             addListItem();
-        })
+        });
 
-        remoIcon.addEventListener('click',function(){
-            arryList.splice(index,1);
+        // Remove item
+        remoIcon.addEventListener('click', function () {
+            arryList.splice(index, 1);
             addListItem();
-        })
+        });
+    });
 
-        // userInput.value = '';
+    showListOuter();
+    addDragAndDropFunctionality(); 
+}
 
-    })
-
-    showListOuter()
-    console.log("list array",arryList)
- }
 
 
   // SUFFLE  funcion----------------------
@@ -147,8 +231,8 @@ function addListItem(){
         if (list.length === 0) return;
 
         for (let i = list.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1)); // Random index between 0 and i
-            [list[i], list[j]] = [list[j], list[i]]; // Correct swapping
+            const j = Math.floor(Math.random() * (i + 1)); 
+            [list[i], list[j]] = [list[j], list[i]]; 
         }
      }
 //---------------------------------------
@@ -340,35 +424,46 @@ insert_btn.addEventListener('click',()=>{
 
 // drag funcionality
 
-const li = document.getElementById("list-li")
-li.setAttribute('draggable', false); 
+function addDragAndDropFunctionality() {
+    const listItems = document.querySelectorAll("#uo_list li");
+    let dragStartIndex;
 
-gripIcon.addEventListener('mousedown', () => {
-  li.setAttribute('draggable', true); 
-});
+    listItems.forEach((li, index) => {
+        const gripIcon = li.querySelector(".fa-grip-vertical");
+        
+        gripIcon.addEventListener("mousedown", () => {
+            li.setAttribute("draggable", true); 
+        });
 
-gripIcon.addEventListener('mouseup', () => {
-  li.setAttribute('draggable', false); 
-});
+        gripIcon.addEventListener("mouseup", () => {
+            li.setAttribute("draggable", false); 
+        });
 
-li.addEventListener('dragstart', (e) => {
-  e.dataTransfer.setData('text/plain', li.dataset.index); // Use the data-index for tracking
-});
+        li.addEventListener("dragstart", () => {
+            dragStartIndex = index; 
+        });
 
-li.addEventListener('dragover', (e) => {
+        li.addEventListener("dragover", (e) => {
+            e.preventDefault(); 
+            li.classList.add("drag-over"); 
+        });
 
-  e.preventDefault(); // Allow dropping
-});
+        li.addEventListener("dragleave", () => {
+            li.classList.remove("drag-over"); 
+        });
 
-li.addEventListener('drop', (e) => {
-  e.preventDefault();
-  const fromIndex = e.dataTransfer.getData('text/plain');
-  const toIndex = e.target.closest('li')?.dataset.index;
+        li.addEventListener("drop", () => {
+            const dragEndIndex = index; 
 
-  if (toIndex !== undefined && fromIndex !== toIndex) {
-    const [movedItem] = arryList.splice(fromIndex, 1);
-    arryList.splice(toIndex, 0, movedItem);
+            // Swap items in the array
+            const [movedItem] = arryList.splice(dragStartIndex, 1);
+            arryList.splice(dragEndIndex, 0, movedItem);
 
-    showList(); // Re-render the list
-  }
-});
+           
+            showList();
+        });
+    });
+}
+
+
+
