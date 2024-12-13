@@ -332,7 +332,7 @@ insert_btn.addEventListener('click',()=>{
     view_insert_dialog.classList.add('hide-view-dialog');
     showList();
     showListOuter()
-    dialog_textarea.innerText = "";
+    dialog_textarea.value = "";
     })
 
 //-----------------------------------------------------
@@ -356,7 +356,7 @@ li.addEventListener('dragstart', (e) => {
 });
 
 li.addEventListener('dragover', (e) => {
-    
+
   e.preventDefault(); // Allow dropping
 });
 
