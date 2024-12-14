@@ -42,98 +42,7 @@ function addListItem(){
     showList()
  }
 
- // SHOW LIST ITEM --------------------------------------
-
-//  function showList(){
-//     uoList.innerHTML = '';  
-   
-
-//     arryList.forEach((element,index)=>{
-//         const li = document.createElement('li');
-//         li.setAttribute('id','list-li')
-//         const input_div = document.createElement('div');
-//         input_div.setAttribute('id',"input-div1")
-
-
-//         const textInput = document.createElement('input');
-//         textInput.setAttribute('id','text-input');
-//         textInput.value = element.name; 
-//         textInput.addEventListener('input',function(event){
-//             arryList[index].name = event.target.value;
-//             showListOuter()
-//         })
-
-//         const image = document.createElement('img');
-//         image.src=element.img
-//         image.alt="icon";
-//         image.style.width = "25px";
-//         image.style.height = "20px";
-
-//         input_div.appendChild(textInput);
-//         if(element.img){
-//             input_div.appendChild(image)
-//         }
-       
-
-
-//         const div = document.createElement('div');
-
-//         // grip icon
-//         const gripIcon = document.createElement('i');
-//         gripIcon.classList.add('fas','fa-grip-vertical')
-        
-//         //copy icon 
-//         const copyIcon = document.createElement('i');
-//         copyIcon.classList.add('far','fa-copy');
-
-//         //checkbox input
-//         const chekBox = document.createElement('input');
-//         chekBox.setAttribute('type','checkbox');
-//         chekBox.setAttribute("id","list-checkbox")
-//         chekBox.checked = element.checked
-//         chekBox.addEventListener('change',function(event){
-//             arryList[index].checked = event.target.checked
-//             showListOuter();
-//         })
-
-       
-//         //remove icon
-//         const remoIcon = document.createElement('i');
-//         remoIcon.classList.add('fas' ,'fa-times');
-//         remoIcon.setAttribute('id','remov-icon');
-
-//         div.appendChild(gripIcon);
-//         div.appendChild(copyIcon);
-//         div.appendChild(chekBox);
-//         div.appendChild(remoIcon);
-
-//         li.appendChild(input_div)
-//         li.appendChild(div);
-
-//         uoList.appendChild(li);
-
-//         // finished creating list items 
-
-//         // list elemnet functionality
-
-//         copyIcon.addEventListener('click',function(){
-//             const copyitem = {...element}
-//             arryList.splice(index , 0, copyitem);
-//             addListItem();
-//         })
-
-//         remoIcon.addEventListener('click',function(){
-//             arryList.splice(index,1);
-//             addListItem();
-//         })
-
-//         // userInput.value = '';
-
-//     })
-
-//     showListOuter()
-//     console.log("list array",arryList)
-//  }
+// show list ------------------
 
 function showList() {
     uoList.innerHTML = '';  
@@ -148,36 +57,47 @@ function showList() {
         const textInput = document.createElement('input');
         textInput.setAttribute('id', 'text-input');
         textInput.value = element.name;
+
         textInput.addEventListener('input', function (event) {
             arryList[index].name = event.target.value;
             showListOuter();
         });
 
         // // to foexpand input with when focus
+
+
+        const imageInput = document.createElement('input');
+        imageInput.type = 'file';  
+        imageInput.accept = 'image/*'; 
+        imageInput.setAttribute('id',"imgeInput") 
+        imageInput.style.visibility= "hidden"
+
+        const imglabel = document.createElement('label');
+        imglabel.setAttribute("for", "imgeInput"); 
+
+        const imgicon = document.createElement('i');
+        imgicon.classList.add("fas","fa-image");
+
+
+                    // Keep track of whether the user clicked on the label or input
+            let isClickOnLabelOrInput = false;
+
+            imglabel.addEventListener('mousedown', function () {
+                isClickOnLabelOrInput = true; // Prevent removing on click of label
+            });
+
+            imageInput.addEventListener('mousedown', function () {
+                isClickOnLabelOrInput = true; // Prevent removing on click of input
+            });
      
 
         textInput.addEventListener('focus', function () {
             div.style.visibility = "hidden";  // Hide other elements
         
             if (!element.img) {
-                // Create the file input element
-                const imageInput = document.createElement('input');
-                imageInput.type = 'file';  
-                imageInput.accept = 'image/*'; 
-                imageInput.setAttribute('id',"imgeInput") 
-                imageInput.style.visibility= "hidden"
-
-                const imglabel = document.createElement('label');
-                // imglabel.setAttribute("for","imgeInput")
-                imglabel.setAttribute("for", "imgeInput"); 
-
-                const imgicon = document.createElement('i');
-                imgicon.classList.add("fas","fa-image");
-
+          
                 imglabel.appendChild(imgicon)
                 
-
-        
                 // Add event listener for when the user selects an image
                 imageInput.addEventListener('change', function (event) {
                     const file = event.target.files[0];  
@@ -195,19 +115,21 @@ function showList() {
             }
         });
 
-
-        
+ 
         textInput.addEventListener('blur', function () {
-            div.style.visibility = 'visible';  
+            setTimeout(() => {
+                // Check if the click was on the label or input
+                if (!isClickOnLabelOrInput) {
+                    // Remove the label and input only if the click was not on them
+                    if (imglabel.parentNode) input_div.removeChild(imglabel);
+                    if (imageInput.parentNode) input_div.removeChild(imageInput);
+                    div.style.visibility = 'visible';
+                }
+                isClickOnLabelOrInput = false; // Reset the flag
+            }, 0); // Small delay to allow click events to process
         });
         
-
-        textInput.addEventListener('blur',function(){
-            // textInput.style.width = "auto";
-            div.style.visibility = 'visible';
-            // input_div.style.display = "block";
-
-        })
+        
         //end------------------------
 
 
@@ -245,21 +167,21 @@ function showList() {
             showList()
             showListOuter()
         }
-    })
+        })
 
-    // Append the icon to the container
-    container.appendChild(icon);
-});
+        // Append the icon to the container
+        container.appendChild(icon);
+    });
 
 
 
-input_div.appendChild(textInput);
+        input_div.appendChild(textInput);
 
-if (element.img) {
-    input_div.appendChild(container); 
-}
+        if (element.img) {
+            input_div.appendChild(container); 
+        }
 
-const div = document.createElement('div');
+        const div = document.createElement('div');
 
 
         //-----------------------------------------------------------------
