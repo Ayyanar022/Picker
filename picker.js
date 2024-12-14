@@ -639,6 +639,8 @@ const save_data = document.getElementById('store-data');
 
 save_data.addEventListener('click',async()=>{
 
+    if(arryList.length===0)return alert("Please Add Data..")
+
     try{
         const response = await fetch('http://localhost:7070/api/insert',{
             method:"POST",
