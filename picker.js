@@ -22,10 +22,8 @@ function addListItem(){
         const valueObj = {name :userInput.value.trim(),checked:true,img:''}     
         arryList.push(valueObj);
     }
-
     showCount.innerHTML = arryList.length ; 
     userInput.value = '';
-   
     showList()
  }
 
@@ -33,11 +31,9 @@ function addListItem(){
     uoList.innerHTML = '';
 
     if(image){
-
         const valuObj ={name:'',checked:true,img:image}
         arryList.push(valuObj)
     }
-
     showCount.innerHTML = arryList.length;
     showList()
  }
@@ -64,7 +60,6 @@ function showList() {
         });
 
         // // to foexpand input with when focus
-
 
         const imageInput = document.createElement('input');
         imageInput.type = 'file';  
@@ -107,8 +102,7 @@ function showList() {
                         showList();  
                         showListOuter(); 
                     }
-                });
-        
+                });        
                 
                 input_div.appendChild(imglabel);
                 input_div.appendChild(imageInput);
